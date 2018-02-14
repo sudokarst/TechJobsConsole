@@ -80,6 +80,7 @@ namespace TechJobsConsole
         private static string GetUserSelection(string choiceHeader, Dictionary<string, string> choices)
         {
             int choiceIdx;
+            bool isValidInput;
             bool isValidChoice = false;
             string[] choiceKeys = new string[choices.Count];
 
@@ -100,9 +101,10 @@ namespace TechJobsConsole
                 }
 
                 string input = Console.ReadLine();
-                choiceIdx = int.Parse(input);
+                //choiceIdx = int.Parse(input);
+                isValidInput = int.TryParse(input, out choiceIdx);
 
-                if (choiceIdx < 0 || choiceIdx >= choiceKeys.Length)
+                if (!isValidInput || choiceIdx < 0 || choiceIdx >= choiceKeys.Length)
                 {
                     Console.WriteLine("Invalid choices. Try again.");
                 }
