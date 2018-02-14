@@ -120,7 +120,25 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+            //Console.WriteLine("printJobs is not implemented yet");
+            string joiner0 = "";
+            string joiner1 = "*******\n";
+            string joiner = joiner0;
+
+            if (someJobs.Count == 0)
+            {
+                Console.WriteLine("Nothing found");
+                return;
+            }
+            foreach (Dictionary<string, string> job in someJobs)
+            {
+                Console.Write(joiner);
+                foreach (KeyValuePair<string, string> column in job)
+                {
+                    Console.WriteLine("{0}: {1}", column.Key, column.Value);
+                }
+                joiner = joiner1;
+            }
         }
     }
 }
