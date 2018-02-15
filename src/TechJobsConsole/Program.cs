@@ -139,6 +139,7 @@ namespace TechJobsConsole
                 }
                 joiner = joiner1;
             }
+            Console.WriteLine("\n\t{0} results", someJobs.Count);
         }
     }
 }
