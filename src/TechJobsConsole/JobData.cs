@@ -65,24 +65,24 @@ namespace TechJobsConsole
             return results;
         }
 
-        public static List<Job> FindByColumnAndValue(string column, string value)
+        public static List<Job> FindByColumnAndValue(string column, string searchFor)
         {
             // load data, if not already loaded
             LoadData();
 
-            List<Job> jobs = new List<Job>();
+            List<Job> results = new List<Job>();
 
             foreach (Job row in AllJobs)
             {
-                string aValue = row[column];
+                string value = row[column];
 
-                if (aValue.Contains(value))
+                if (value.IndexOf(searchFor, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    jobs.Add(row);
+                    results.Add(row);
                 }
             }
 
-            return jobs;
+            return results;
         }
 
         /*
