@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -37,6 +38,31 @@ namespace TechJobsConsole
                 }
             }
             return values;
+        }
+
+        /// <summary>
+        /// Search across all columns, without duplicates </summary>
+        /// <returns>
+        /// A list of jobs where the value is found in any column </returns>
+        public static List<Job> FindByValue(string searchFor)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Job> results = new List<Job>();
+
+            foreach (Job job in AllJobs)
+            {
+                foreach (string column in job.Values)
+                {
+                    if (column.IndexOf(searchFor, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        results.Add(job);
+                        break; // drop back to outer loop
+                    }
+                }
+            }
+            return results;
         }
 
         public static List<Job> FindByColumnAndValue(string column, string value)
