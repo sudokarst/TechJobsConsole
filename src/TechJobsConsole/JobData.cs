@@ -5,12 +5,13 @@ using System.Text;
 
 namespace TechJobsConsole
 {
+    using Job = Dictionary<string, string>;
     class JobData
     {
-        static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
+        static List<Job> AllJobs = new List<Job>();
         static bool IsDataLoaded = false;
 
-        public static List<Dictionary<string, string>> FindAll()
+        public static List<Job> FindAll()
         {
             LoadData();
             return AllJobs;
@@ -26,7 +27,7 @@ namespace TechJobsConsole
 
             List<string> values = new List<string>();
 
-            foreach (Dictionary<string, string> job in AllJobs)
+            foreach (Job job in AllJobs)
             {
                 string aValue = job[column];
 
@@ -38,14 +39,14 @@ namespace TechJobsConsole
             return values;
         }
 
-        public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
+        public static List<Job> FindByColumnAndValue(string column, string value)
         {
             // load data, if not already loaded
             LoadData();
 
-            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            List<Job> jobs = new List<Job>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Job row in AllJobs)
             {
                 string aValue = row[column];
 
@@ -90,7 +91,7 @@ namespace TechJobsConsole
             // Parse each row array into a more friendly Dictionary
             foreach (string[] row in rows)
             {
-                Dictionary<string, string> rowDict = new Dictionary<string, string>();
+                Job rowDict = new Job();
 
                 for (int i = 0; i < headers.Length; i++)
                 {
